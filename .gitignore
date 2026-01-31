@@ -1,0 +1,70 @@
+# Ignore build output directories also bin and obj folders and subfolders
+**/bin/*
+**/obj/*
+**/bin/
+**/obj/
+
+# Ignore testresults folder
+**/TestResults/*
+
+# Ignore local shell scripts
+*.sh
+
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Auto-generated files
+*.generated.cs
+*.generated.sln
+
+# Logs
+*.log
+
+# NuGet packages
+*.nupkg
+# The packages folder can be ignored if you have a NuGet.config file in the root of your repository
+packages/
+# Uncomment if necessary however generally it will be restored by NuGet
+# !packages/build/
+# !packages/repositories.config
+
+# Visual Studio Code
+.vscode/
+
+# Rider
+.idea/
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+# Entity Framework Migrations Migrations/snapshot files (any files that container the word "Snapshot" in the name)
+**/Migrations/*Snapshot*.cs
+
+# Exclude appsettings files
+appsettings*.json
+
+# Exclude publish output
+publish/
+
+# Exclude temporary files
+*.tmp
+*.temp
+*.bak
+*.swp
+*.swo
+*.DS_Store
+
+# Exclude Terraform state files and directories
+*.tfstate
+*.tfstate.*
+.terraform/
+.terraform.lock.hcl
+*tfplan
+
+# Exclude .err and .out
+*.err
+*.out
