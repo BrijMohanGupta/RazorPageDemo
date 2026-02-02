@@ -1,0 +1,28 @@
+﻿@page
+@model RazorPageDemoApp.Pages.Products.IndexModel
+
+<h2>Product List</h2>
+<a asp-page="Create" class="btn btn-primary">Add Product</a>
+
+
+<table class="table table-bordered mt-3">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model.Products)
+        {
+            <tr>
+                <td>@product.Name</td>
+                <td>@product.Quantity</td>
+                <td>@product.Price</td>
+                <td>@product.Description</td>
+            </tr>
+        }
+    </tbody>
+</table>
