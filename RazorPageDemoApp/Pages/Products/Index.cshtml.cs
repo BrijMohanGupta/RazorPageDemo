@@ -1,9 +1,11 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using RazorPageDemoApp.Data;
 using RazorPageDemoApp.Models;
 
 namespace RazorPageDemoApp.Pages.Products
 {
+    [Authorize(Roles = "Admin,Maintainer,ReadOnly")]
     public class IndexModel : PageModel
     {
         private readonly ProductRepository _repo;

@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using RazorPageDemoApp.Data;
@@ -5,6 +6,7 @@ using RazorPageDemoApp.Models;
 
 namespace RazorPageDemoApp.Pages.Products
 {
+    [Authorize(Roles = "Admin,Maintainer")]
     public class CreateModel : PageModel
     {
         [BindProperty]
