@@ -2,22 +2,39 @@
 
 namespace RazorPageDemoApp.Data
 {
-    public static class ProductRepository
+    public class ProductRepository
     {
-        private static readonly List<Product> _products = new()
+        private readonly AppDbContext _context;
+
+        public ProductRepository(AppDbContext context)
         {
-            new Product { Id = 1, Name = "Laptop", Quantity = 5, Price = 65000, Description = "Business laptop" },
-            new Product { Id = 2, Name = "Mouse", Quantity = 50, Price = 500, Description = "Wireless mouse" }
-        };
+            _context = context;
+        }
 
-        public static List<Product> GetAll() => _products;
+        public List<Product> GetAll() => _context.Products.ToList();
 
-        public static Product? GetById(int id) => _products.FirstOrDefault(p => p.Id == id);
+        public Product? GetById(int id) => _context.Products.FirstOrDefault(p => p.Id == id);
 
-        public static void Add(Product product)
+        public void Add(Product product)
         {
-            product.Id = _products.Max(p => p.Id) + 1;
-            _products.Add(product);
+            _context.Products.Add(product);
+            _context.SaveChanges();
+        }
+
+        public void Update(Product product)
+        {
+            _context.Products.Update(product);
+            _context.SaveChanges();
+        }
+
+        public void Delete(int id)
+        {
+            var product = _context.Products.Find(id);
+            if (product != null)
+            {
+                _context.Products.Remove(product);
+                _context.SaveChanges();
+            }
         }
     }
 }

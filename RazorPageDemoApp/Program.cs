@@ -1,7 +1,23 @@
+using Microsoft.EntityFrameworkCore;
+using RazorPageDemoApp.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+
+builder.Services.AddDbContext<AppDbContext>(options =>
+options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"),
+sqlOptions =>
+{
+    sqlOptions.EnableRetryOnFailure(
+        maxRetryCount: 5,
+        maxRetryDelay: TimeSpan.FromSeconds(10),
+        errorNumbersToAdd: null
+    );
+}));
+
+builder.Services.AddScoped<ProductRepository>();
 
 var app = builder.Build();
 

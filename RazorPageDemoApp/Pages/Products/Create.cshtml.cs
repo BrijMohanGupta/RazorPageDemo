@@ -10,7 +10,15 @@ namespace RazorPageDemoApp.Pages.Products
         [BindProperty]
         public Product Product { get; set; } = new();
 
+        private readonly ProductRepository productRepo;
+
+        public CreateModel(ProductRepository repo)
+        {
+            productRepo = repo;
+        }
+
         public void OnGet() { }
+
 
         public IActionResult OnPost()
         {
@@ -19,7 +27,7 @@ namespace RazorPageDemoApp.Pages.Products
                 return Page();
             }
 
-            ProductRepository.Add(Product);
+            productRepo.Add(Product);
             return RedirectToPage("Index");
         }
     }

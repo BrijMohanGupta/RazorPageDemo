@@ -1,0 +1,12 @@
+﻿@page "{id:int}"
+@model RazorPageDemoApp.Pages.Products.EditModel
+
+<h2>Edit Product</h2>
+<form method="post">
+    <input type="hidden" asp-for="Product.Id" />
+    <input asp-for="Product.Name" class="form-control" />
+    <input asp-for="Product.Quantity" class="form-control" />
+    <input asp-for="Product.Price" class="form-control" />
+    <textarea asp-for="Product.Description" class="form-control"></textarea>
+    <button class="btn btn-success mt-2">Update</button>
+</form>
