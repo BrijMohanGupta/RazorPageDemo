@@ -1,0 +1,32 @@
+﻿@page
+@model RazorPageDemoApp.Pages.Admin.EditUserModel
+
+<h2 class="page-title">Edit User Roles</h2>
+
+<div class="card card-form shadow-sm">
+    <div class="card-body">
+        <form method="post">
+            <input type="hidden" asp-for="UserId" />
+
+
+            <p><strong>@Model.Email</strong></p>
+
+
+            @foreach (var role in Model.AllRoles)
+            {
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox"
+                           name="SelectedRoles" value="@role"
+                           checked="@Model.UserRoles.Contains(role)" />
+                    <label class="form-check-label">@role</label>
+                </div>
+            }
+
+
+            <div class="text-end mt-3">
+                <a asp-page="Users" class="btn btn-secondary">Cancel</a>
+                <button type="submit" class="btn btn-primary">Update</button>
+            </div>
+        </form>
+    </div>
+</div>

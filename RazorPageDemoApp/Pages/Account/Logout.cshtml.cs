@@ -13,7 +13,7 @@ namespace RazorPageDemoApp.Pages.Account
             _signInManager = signInManager;
         }
 
-        public async Task<IActionResult> OnGet()
+        public async Task<IActionResult> OnPostAsync()
         {
             await _signInManager.SignOutAsync();
             return RedirectToPage("/Account/Login");

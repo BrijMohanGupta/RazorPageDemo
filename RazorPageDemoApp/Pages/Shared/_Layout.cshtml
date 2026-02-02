@@ -34,6 +34,13 @@
                                 <a class="nav-link text-dark" asp-page="/Products/Index">Products</a>
                             </li>
                         }
+
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-page="/Admin/Users">User Management</a>
+                            </li>
+                        }
                     </ul>
 
                     <ul class="navbar-nav">

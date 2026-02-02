@@ -1,0 +1,32 @@
+﻿@page
+@model RazorPageDemoApp.Pages.Admin.UsersModel
+
+<h2 class="page-title">User Management</h2>
+<div class="mb-3 text-end">
+    <a asp-page="CreateUser" class="btn btn-success">+ New User</a>
+</div>
+
+
+<div class="table-wrapper">
+    <table class="table table-hover align-middle">
+        <thead>
+            <tr>
+                <th>Email</th>
+                <th>Roles</th>
+                <th style="width:150px">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model.Users)
+            {
+                <tr>
+                    <td>@user.Email</td>
+                    <td>@string.Join(", ", user.Roles)</td>
+                    <td>
+                        <a asp-page="EditUser" asp-route-id="@user.Id" class="btn btn-sm btn-warning">Edit Roles</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
