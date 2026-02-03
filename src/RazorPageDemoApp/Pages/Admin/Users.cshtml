@@ -1,32 +1,59 @@
 ﻿@page
 @model RazorPageDemoApp.Pages.Admin.UsersModel
+@{
+    ViewData["Title"] = "User Management";
+}
 
-<h2 class="page-title">User Management</h2>
-<div class="mb-3 text-end">
-    <a asp-page="CreateUser" class="btn btn-success">+ New User</a>
-</div>
+<div class="user-page">
+    <div class="page-header">
+        <h2>👤 User Management</h2>
+        <a asp-page="Create" class="btn btn-primary">+ Add User</a>
+    </div>
 
-
-<div class="table-wrapper">
-    <table class="table table-hover align-middle">
+    <table class="table user-table">
         <thead>
             <tr>
                 <th>Email</th>
+                <th>Full Name</th>
                 <th>Roles</th>
-                <th style="width:150px">Actions</th>
+                <th class="text-center">Actions</th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var user in Model.Users)
+        @if (Model.Users.Any())
+        {
+            foreach (var user in Model.Users)
             {
                 <tr>
-                    <td>@user.Email</td>
-                    <td>@string.Join(", ", user.Roles)</td>
                     <td>
-                        <a asp-page="EditUser" asp-route-id="@user.Id" class="btn btn-sm btn-warning">Edit Roles</a>
+                        <strong>@user.Email</strong>
+                    </td>
+                    <td class="text-muted">
+                        @user.FullName
+                    </td>
+                    <td>
+                        @foreach (var role in user.Roles)
+                        {
+                            <span class="role-badge">@role</span>
+                        }
+                    </td>
+                    <td class="text-center">
+                        <a asp-page="EditUser" asp-route-id="@user.Id"
+                           class="btn btn-sm btn-outline-warning">
+                            Edit
+                        </a>
                     </td>
                 </tr>
             }
+        }
+        else
+        {
+            <tr>
+                <td colspan="4" class="text-center text-muted">
+                    No users found.
+                </td>
+            </tr>
+        }
         </tbody>
     </table>
 </div>
